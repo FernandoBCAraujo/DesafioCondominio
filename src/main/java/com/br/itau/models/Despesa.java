@@ -1,4 +1,4 @@
-package com.br.itau.model;
+package com.br.itau.models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Despesa implements Serializable{
@@ -22,6 +23,11 @@ public class Despesa implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idDespesa;
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "ID_PROPRIETARIO")
+	private Proprietario proprietario;
+	
 	private String nomeDespesa;
 
 	private BigDecimal valorDespesa;
@@ -29,11 +35,10 @@ public class Despesa implements Serializable{
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private LocalDate dataDaDespesa;
 	
-	private String descricaoDespesa;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	private LocalDate dataVencimentoDespesa;
 	
-	@ManyToOne
-	@JoinColumn(name = "ID_PROPRIETARIO")
-	private Proprietario proprietario;
+	private String descricaoDespesa;
 
 	public Integer getIdDespesa() {
 		return idDespesa;
@@ -74,6 +79,14 @@ public class Despesa implements Serializable{
 	public void setDataDaDespesa(LocalDate dataDaDespesa) {
 		this.dataDaDespesa = dataDaDespesa;
 	}
+	
+	public LocalDate getDataVencimentoDespesa() {
+		return dataVencimentoDespesa;
+	}
+
+	public void setDataVencimentoDespesa(LocalDate dataVencimentoDespesa) {
+		this.dataVencimentoDespesa = dataVencimentoDespesa;
+	}
 
 	public String getDescricaoDespesa() {
 		return descricaoDespesa;
@@ -86,18 +99,17 @@ public class Despesa implements Serializable{
 	public Despesa() {
 		
 	}
-	
-	public Despesa(Integer idDespesa, String nomeDespesa, BigDecimal valorDespesa, LocalDate dataDaDespesa,
-			String descricaoDespesa, Proprietario proprietario) {
+
+	public Despesa(Integer idDespesa, Proprietario proprietario, String nomeDespesa, BigDecimal valorDespesa,
+			LocalDate dataDaDespesa, LocalDate dataVencimentoDespesa, String descricaoDespesa) {
 		super();
 		this.idDespesa = idDespesa;
+		this.proprietario = proprietario;
 		this.nomeDespesa = nomeDespesa;
 		this.valorDespesa = valorDespesa;
 		this.dataDaDespesa = dataDaDespesa;
+		this.dataVencimentoDespesa = dataVencimentoDespesa;
 		this.descricaoDespesa = descricaoDespesa;
-		this.proprietario = proprietario;
 	}
 
-	
-	
 }

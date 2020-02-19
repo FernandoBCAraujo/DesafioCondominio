@@ -1,4 +1,4 @@
-package com.br.itau.model.types;
+package com.br.itau.models.types;
 
 public enum StatusAlugado {
 	

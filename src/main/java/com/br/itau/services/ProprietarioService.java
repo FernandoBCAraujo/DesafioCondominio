@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.br.itau.model.Proprietario;
+import com.br.itau.models.Proprietario;
 import com.br.itau.repositories.ProprietarioRepository;
 
 @Service
@@ -27,6 +27,5 @@ public class ProprietarioService {
 	public Proprietario findByName(String nomeProprietario) {
 		Optional<Proprietario> objProprietario = proprietarioRepository.findByNomeProprietario(nomeProprietario);
 		return objProprietario.get();
-		
 	}
 }

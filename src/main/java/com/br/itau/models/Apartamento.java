@@ -1,4 +1,4 @@
-package com.br.itau.model;
+package com.br.itau.models;
 
 import java.io.Serializable;
 
@@ -9,7 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.br.itau.model.types.StatusAlugado;
+import com.br.itau.models.types.StatusAlugado;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Apartamento implements Serializable {
@@ -20,6 +21,7 @@ public class Apartamento implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idApartamento;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "ID_PROPRIETARIO")
 	private Proprietario proprietario;

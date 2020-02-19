@@ -1,4 +1,4 @@
-package com.br.itau.model;
+package com.br.itau.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Proprietario implements Serializable{
 
@@ -21,17 +19,19 @@ public class Proprietario implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idProprietario;
 	
-	private String numeroDaIdentidade;
-	
 	private String nomeProprietario;
-
+	
 	private String cpf;
 	
-	@JsonIgnore
+	private String numeroTelefone;
+	
+	private String numeroDaIdentidade;
+	
+//	@JsonIgnore
 	@OneToMany(mappedBy = "proprietario")
 	private List<Apartamento> listaApartamentos = new ArrayList<Apartamento>();
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@OneToMany(mappedBy = "proprietario")
 	private List<Despesa> listaDespesa = new ArrayList<Despesa>();
 
@@ -82,21 +82,29 @@ public class Proprietario implements Serializable{
 	public void setNumeroDaIdentidade(String numeroDaIdentidade) {
 		this.numeroDaIdentidade = numeroDaIdentidade;
 	}
+	
+	public String getNumeroTelefone() {
+		return numeroTelefone;
+	}
+
+	public void setNumeroTelefone(String numeroTelefone) {
+		this.numeroTelefone = numeroTelefone;
+	}
 
 	public Proprietario() {
 		
 	}
-	
-	public Proprietario(Integer idProprietario, List<Apartamento> listaApartamentos, List<Despesa> listaDespesa,
-			String nomeProprietario, String cpf, String numeroDaIdentidade) {
+
+	public Proprietario(Integer idProprietario, String nomeProprietario, String cpf, String numeroTelefone,
+			String numeroDaIdentidade, List<Apartamento> listaApartamentos, List<Despesa> listaDespesa) {
 		super();
 		this.idProprietario = idProprietario;
-		this.listaApartamentos = listaApartamentos;
-		this.listaDespesa = listaDespesa;
 		this.nomeProprietario = nomeProprietario;
 		this.cpf = cpf;
+		this.numeroTelefone = numeroTelefone;
 		this.numeroDaIdentidade = numeroDaIdentidade;
+		this.listaApartamentos = listaApartamentos;
+		this.listaDespesa = listaDespesa;
 	}
-	
-	
+
 }

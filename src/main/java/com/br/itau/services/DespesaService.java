@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.br.itau.model.Despesa;
+import com.br.itau.models.Despesa;
 import com.br.itau.repositories.DespesaRepository;
 
 @Service
@@ -23,5 +23,14 @@ public class DespesaService {
 		Optional<Despesa> objDespesa = despesaRepository.findById(id);
 		return objDespesa.get();
 	}
+	
+	public Despesa insertDespesas(Despesa objDespesa) {
+		return despesaRepository.save(objDespesa);
+	}
+	
+//	public Despesa findByName(String nomeProprietario) {
+//		Optional<Despesa> objDespesa = despesaRepository.findByNomeProprietario(nomeProprietario);
+//		return objDespesa.get();
+//	}
 
 }
