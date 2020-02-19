@@ -27,10 +27,5 @@ public class DespesaService {
 	public Despesa insertDespesas(Despesa objDespesa) {
 		return despesaRepository.save(objDespesa);
 	}
-	
-//	public Despesa findByName(String nomeProprietario) {
-//		Optional<Despesa> objDespesa = despesaRepository.findByNomeProprietario(nomeProprietario);
-//		return objDespesa.get();
-//	}
 
 }

@@ -2,42 +2,38 @@ package com.br.itau.models;
 
 import java.io.Serializable;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import com.br.itau.models.types.StatusAlugado;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Apartamento implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer idApartamento;
-	
-	@JsonIgnore
+
+    @JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "ID_PROPRIETARIO")
+	@JoinColumn(name = "idProprietario")
 	private Proprietario proprietario;
-	
+
 	private String numeroApartamento;
-	
-	/*
-	 *apesar da grande maioria dos apartamentos estarem no andar correspondente ao início do seu número, não sei
-	 * essa regra vale para todos os condominios
-	 */
-	private String andarApartameto; 
-	
+
 	private Integer statusAlugado;
-	
+
 	private String vagaEstacionamento;
-	
+
 	private String observacao;
 
 	public Integer getIdApartamento() {
@@ -64,18 +60,10 @@ public class Apartamento implements Serializable {
 		this.numeroApartamento = numeroApartamento;
 	}
 
-	public String getAndarApartameto() {
-		return andarApartameto;
-	}
-
-	public void setAndarApartameto(String andarApartameto) {
-		this.andarApartameto = andarApartameto;
-	}
-
 	public StatusAlugado getStatusAlugado() {
 		return StatusAlugado.valueOf(statusAlugado);
 	}
-	
+
 	public void setStatusAlugado(StatusAlugado statusAlugado) {
 		this.statusAlugado = statusAlugado.getCodigoEnum();
 	}
@@ -95,21 +83,20 @@ public class Apartamento implements Serializable {
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
-	
+
 	public Apartamento() {
-		
+
 	}
 
 	public Apartamento(Integer idApartamento, Proprietario proprietario, String numeroApartamento,
-			String andarApartameto, StatusAlugado statusAlugado, String vagaEstacionamento, String observacao) {
+			StatusAlugado statusAlugado, String vagaEstacionamento, String observacao) {
 		super();
 		this.idApartamento = idApartamento;
 		this.proprietario = proprietario;
 		this.numeroApartamento = numeroApartamento;
-		this.andarApartameto = andarApartameto;
 		setStatusAlugado(statusAlugado);
 		this.vagaEstacionamento = vagaEstacionamento;
 		this.observacao = observacao;
 	}
-	
+
 }

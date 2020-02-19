@@ -39,10 +39,10 @@ public class TestConfig implements CommandLineRunner {
 		Proprietario proprietario2 = new Proprietario(null, "Maria da Silva", "88764437035", "8130984285", "456051843",
 				null, null);
 
-		Apartamento apartamento1 = new Apartamento(null, proprietario1, "777", "7", StatusAlugado.ALUGADO, "2",
-				"Apartamento se encontra com o dono morando.");
-		Apartamento apartamento2 = new Apartamento(null, proprietario2, "700", "7", StatusAlugado.DESALUGADO, "1",
-				"Apartamento se encontra desalugado.");
+		Apartamento apartamento1 = new Apartamento(null, proprietario1, "777", StatusAlugado.ALUGADO, "2",
+				"Apartamento encontra-se com o dono morando.");
+		Apartamento apartamento2 = new Apartamento(null, proprietario2, "700", StatusAlugado.DESALUGADO, "1",
+				"Apartamento encontra-se desalugado.");
 
 		Despesa despesa1 = new Despesa(null, proprietario1, "Conta de Energia", new BigDecimal(257), LocalDate.now(), LocalDate.of(2020, 03, 19),
 				"Conta de Energia do apartamento 777");
@@ -61,6 +61,8 @@ public class TestConfig implements CommandLineRunner {
 		listaDespesa.add(despesa1);
 		listaDespesa.add(despesa2);
 		listaDespesa.add(despesa3);
+		
+		
 
 		proprietarioRepository.saveAll(Arrays.asList(proprietario1, proprietario2));
 		apartamentoRepository.saveAll(Arrays.asList(apartamento1, apartamento2));

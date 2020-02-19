@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,12 +21,12 @@ public class Despesa implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer idDespesa;
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "ID_PROPRIETARIO")
+	@JoinColumn(name = "idProprietario")
 	private Proprietario proprietario;
 	
 	private String nomeDespesa;
@@ -110,6 +111,67 @@ public class Despesa implements Serializable{
 		this.dataDaDespesa = dataDaDespesa;
 		this.dataVencimentoDespesa = dataVencimentoDespesa;
 		this.descricaoDespesa = descricaoDespesa;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dataDaDespesa == null) ? 0 : dataDaDespesa.hashCode());
+		result = prime * result + ((dataVencimentoDespesa == null) ? 0 : dataVencimentoDespesa.hashCode());
+		result = prime * result + ((descricaoDespesa == null) ? 0 : descricaoDespesa.hashCode());
+		result = prime * result + ((idDespesa == null) ? 0 : idDespesa.hashCode());
+		result = prime * result + ((nomeDespesa == null) ? 0 : nomeDespesa.hashCode());
+		result = prime * result + ((proprietario == null) ? 0 : proprietario.hashCode());
+		result = prime * result + ((valorDespesa == null) ? 0 : valorDespesa.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Despesa other = (Despesa) obj;
+		if (dataDaDespesa == null) {
+			if (other.dataDaDespesa != null)
+				return false;
+		} else if (!dataDaDespesa.equals(other.dataDaDespesa))
+			return false;
+		if (dataVencimentoDespesa == null) {
+			if (other.dataVencimentoDespesa != null)
+				return false;
+		} else if (!dataVencimentoDespesa.equals(other.dataVencimentoDespesa))
+			return false;
+		if (descricaoDespesa == null) {
+			if (other.descricaoDespesa != null)
+				return false;
+		} else if (!descricaoDespesa.equals(other.descricaoDespesa))
+			return false;
+		if (idDespesa == null) {
+			if (other.idDespesa != null)
+				return false;
+		} else if (!idDespesa.equals(other.idDespesa))
+			return false;
+		if (nomeDespesa == null) {
+			if (other.nomeDespesa != null)
+				return false;
+		} else if (!nomeDespesa.equals(other.nomeDespesa))
+			return false;
+		if (proprietario == null) {
+			if (other.proprietario != null)
+				return false;
+		} else if (!proprietario.equals(other.proprietario))
+			return false;
+		if (valorDespesa == null) {
+			if (other.valorDespesa != null)
+				return false;
+		} else if (!valorDespesa.equals(other.valorDespesa))
+			return false;
+		return true;
 	}
 
 }

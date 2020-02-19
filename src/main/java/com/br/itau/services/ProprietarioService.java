@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.br.itau.models.Proprietario;
 import com.br.itau.repositories.ProprietarioRepository;
+import com.br.itau.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class ProprietarioService {
@@ -21,11 +22,15 @@ public class ProprietarioService {
 
 	public Proprietario findById(Integer id) {
 		Optional<Proprietario> objProprietario = proprietarioRepository.findById(id);
-		return objProprietario.get();
+		return objProprietario.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	public Proprietario findByName(String nomeProprietario) {
 		Optional<Proprietario> objProprietario = proprietarioRepository.findByNomeProprietario(nomeProprietario);
-		return objProprietario.get();
+		return objProprietario.orElseThrow(() -> new ResourceNotFoundException(nomeProprietario));
+	}
+	
+	public Proprietario insertProprietarios(Proprietario objProprietario) {
+		return proprietarioRepository.save(objProprietario);
 	}
 }

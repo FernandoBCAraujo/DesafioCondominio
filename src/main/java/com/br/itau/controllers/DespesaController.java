@@ -22,8 +22,6 @@ public class DespesaController {
 
 	@Autowired
 	private DespesaService despesaService;
-//	@Autowired
-//	private ProprietarioService proprietarioService;
 
 	@GetMapping
 	public ResponseEntity<List<Despesa>> findAll() {
@@ -51,11 +49,4 @@ public class DespesaController {
 		return ResponseEntity.created(uri).body(objDespesa);
 	}
 
-//	@GetMapping(value = "/nome/{nomeProprietario}")
-//	public ResponseEntity<Despesa> findByName(@PathVariable String nomeProprietario){
-//		
-//		Despesa objDespesa = despesaService.findByName(nomeProprietario);
-//		
-//		return ResponseEntity.ok().body(objDespesa);
-//	}
 }
