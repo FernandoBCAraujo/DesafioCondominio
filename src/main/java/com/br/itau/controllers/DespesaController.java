@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.br.itau.models.Despesa;
+import com.br.itau.models.dto.DespesaView;
 import com.br.itau.services.DespesaService;
 
 @RestController
@@ -30,6 +31,14 @@ public class DespesaController {
 
 		return ResponseEntity.ok().body(listaDespesa);
 	}
+	
+//	@GetMapping
+//	public ResponseEntity<List<DespesaView>> findAll() {
+//
+//		List<DespesaView> listaDespesa = despesaService.findAll();
+//
+//		return ResponseEntity.ok().body(listaDespesa);
+//	}
 
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Despesa> findById(@PathVariable Integer id) {

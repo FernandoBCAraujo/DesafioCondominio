@@ -15,6 +15,7 @@ import com.br.itau.models.Apartamento;
 import com.br.itau.models.Despesa;
 import com.br.itau.models.Proprietario;
 import com.br.itau.models.types.StatusAlugado;
+import com.br.itau.models.types.StatusPagamentoDespesa;
 import com.br.itau.repositories.ApartamentoRepository;
 import com.br.itau.repositories.DespesaRepository;
 import com.br.itau.repositories.ProprietarioRepository;
@@ -45,13 +46,13 @@ public class TestConfig implements CommandLineRunner {
 				"Apartamento encontra-se desalugado.");
 
 		Despesa despesa1 = new Despesa(null, proprietario1, "Conta de Energia", new BigDecimal(257), LocalDate.now(), LocalDate.of(2020, 03, 19),
-				"Conta de Energia do apartamento 777");
+				StatusPagamentoDespesa.PAGO,"Conta de Energia do apartamento 777");
 		
 		Despesa despesa2 = new Despesa(null, proprietario2, "Conta de Água", new BigDecimal(145), LocalDate.now(), LocalDate.of(2020, 03, 19),
-				"Conta de água do apartamento 700");
+				StatusPagamentoDespesa.AGUARDANDO_PAGAMENTO,"Conta de água do apartamento 700");
 		
 		Despesa despesa3 = new Despesa(null, proprietario1, "Condominio", new BigDecimal(349), LocalDate.now(), LocalDate.of(2020, 03, 19),
-				"Conta Condominio do Apartamento 777");
+				StatusPagamentoDespesa.NAO_PAGO,"Conta Condominio do Apartamento 777");
 
 		List<Apartamento> listaApartamento = new ArrayList<Apartamento>();
 		listaApartamento.add(apartamento1);
@@ -61,8 +62,6 @@ public class TestConfig implements CommandLineRunner {
 		listaDespesa.add(despesa1);
 		listaDespesa.add(despesa2);
 		listaDespesa.add(despesa3);
-		
-		
 
 		proprietarioRepository.saveAll(Arrays.asList(proprietario1, proprietario2));
 		apartamentoRepository.saveAll(Arrays.asList(apartamento1, apartamento2));

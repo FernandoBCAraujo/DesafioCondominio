@@ -6,13 +6,13 @@ import com.br.itau.models.Apartamento;
 import com.br.itau.models.Proprietario;
 import com.br.itau.models.types.StatusAlugado;
 
-public class ApartamentoDTO implements Serializable{
+public class ApartamentoForm implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private Integer idApartamento;
 
-	private Integer proprietario;
+	private Proprietario proprietario;
 
 	private String numeroApartamento;
 
@@ -30,11 +30,11 @@ public class ApartamentoDTO implements Serializable{
 		this.idApartamento = idApartamento;
 	}
 
-	public Integer getProprietario() {
+	public Proprietario getProprietario() {
 		return proprietario;
 	}
 
-	public void setProprietario(Integer proprietario) {
+	public void setProprietario(Proprietario proprietario) {
 		this.proprietario = proprietario;
 	}
 
@@ -69,15 +69,17 @@ public class ApartamentoDTO implements Serializable{
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
-	
-	public static ApartamentoDTO convert(Apartamento source) {
-		ApartamentoDTO apartamento = new ApartamentoDTO();
-		apartamento.setIdApartamento(source.getIdApartamento());
-		apartamento.setStatusAlugado(source.getStatusAlugado());
-		apartamento.setNumeroApartamento(source.getNumeroApartamento());
-		apartamento.setProprietario(source.getProprietario().getIdProprietario());
-		//apartamento.setObservacao(source.);
-		return apartamento;
+
+	public static ApartamentoForm convert(Apartamento source) {
+		
+		ApartamentoForm apartamentoForm = new ApartamentoForm();
+		apartamentoForm.setIdApartamento(source.getIdApartamento());
+		apartamentoForm.setStatusAlugado(source.getStatusAlugado());
+		apartamentoForm.setNumeroApartamento(source.getNumeroApartamento());
+		apartamentoForm.getProprietario().setIdProprietario(source.getProprietario().getIdProprietario());
+		apartamentoForm.setObservacao(source.getObservacao());
+		apartamentoForm.setVagaEstacionamento(source.getVagaEstacionamento());
+		return apartamentoForm;
 	}
-	
+
 }

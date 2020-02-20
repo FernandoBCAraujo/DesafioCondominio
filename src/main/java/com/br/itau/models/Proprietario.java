@@ -28,7 +28,7 @@ public class Proprietario implements Serializable{
 	
 	private String numeroDaIdentidade;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@OneToMany(mappedBy = "proprietario")
 	private List<Apartamento> listaApartamentos;
 	

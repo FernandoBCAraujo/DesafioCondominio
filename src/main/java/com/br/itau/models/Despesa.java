@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.br.itau.models.types.StatusPagamentoDespesa;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -38,6 +38,8 @@ public class Despesa implements Serializable{
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
 	private LocalDate dataVencimentoDespesa;
+	
+	private Integer statusPagamentoDespesa;
 	
 	private String descricaoDespesa;
 
@@ -88,6 +90,15 @@ public class Despesa implements Serializable{
 	public void setDataVencimentoDespesa(LocalDate dataVencimentoDespesa) {
 		this.dataVencimentoDespesa = dataVencimentoDespesa;
 	}
+	
+	public StatusPagamentoDespesa getStatusPagamentoDespesa() {
+		return StatusPagamentoDespesa.valueOf(statusPagamentoDespesa);
+	}
+
+	public void setStatusPagamentoDespesa(StatusPagamentoDespesa statusPagamentoDespesa) {
+		this.statusPagamentoDespesa = statusPagamentoDespesa.getCodigoEnum();
+	}
+
 
 	public String getDescricaoDespesa() {
 		return descricaoDespesa;
@@ -102,7 +113,7 @@ public class Despesa implements Serializable{
 	}
 
 	public Despesa(Integer idDespesa, Proprietario proprietario, String nomeDespesa, BigDecimal valorDespesa,
-			LocalDate dataDaDespesa, LocalDate dataVencimentoDespesa, String descricaoDespesa) {
+			LocalDate dataDaDespesa, LocalDate dataVencimentoDespesa, StatusPagamentoDespesa statusPagamentoDespesa,String descricaoDespesa) {
 		super();
 		this.idDespesa = idDespesa;
 		this.proprietario = proprietario;
@@ -110,6 +121,7 @@ public class Despesa implements Serializable{
 		this.valorDespesa = valorDespesa;
 		this.dataDaDespesa = dataDaDespesa;
 		this.dataVencimentoDespesa = dataVencimentoDespesa;
+		setStatusPagamentoDespesa(statusPagamentoDespesa);
 		this.descricaoDespesa = descricaoDespesa;
 	}
 
@@ -123,6 +135,7 @@ public class Despesa implements Serializable{
 		result = prime * result + ((idDespesa == null) ? 0 : idDespesa.hashCode());
 		result = prime * result + ((nomeDespesa == null) ? 0 : nomeDespesa.hashCode());
 		result = prime * result + ((proprietario == null) ? 0 : proprietario.hashCode());
+		result = prime * result + ((statusPagamentoDespesa == null) ? 0 : statusPagamentoDespesa.hashCode());
 		result = prime * result + ((valorDespesa == null) ? 0 : valorDespesa.hashCode());
 		return result;
 	}
@@ -166,6 +179,11 @@ public class Despesa implements Serializable{
 				return false;
 		} else if (!proprietario.equals(other.proprietario))
 			return false;
+		if (statusPagamentoDespesa == null) {
+			if (other.statusPagamentoDespesa != null)
+				return false;
+		} else if (!statusPagamentoDespesa.equals(other.statusPagamentoDespesa))
+			return false;
 		if (valorDespesa == null) {
 			if (other.valorDespesa != null)
 				return false;
@@ -173,5 +191,7 @@ public class Despesa implements Serializable{
 			return false;
 		return true;
 	}
+
+	
 
 }

@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.br.itau.models.Apartamento;
-import com.br.itau.models.dto.ApartamentoDTO;
+import com.br.itau.models.dto.ApartamentoForm;
+import com.br.itau.models.dto.ApartamentoView;
 import com.br.itau.services.ApartamentoService;
 
 @RestController
@@ -25,11 +26,18 @@ public class ApartamentoController {
 	private ApartamentoService apartamentoService;
 
 	@GetMapping
-	public ResponseEntity<List<ApartamentoDTO>> findAll() {
+	public ResponseEntity<List<Apartamento>> findAll() {
 		
-		List<ApartamentoDTO> listaApartamento = apartamentoService.findAll();
+		List<Apartamento> listaApartamento = apartamentoService.findAll();
+		
 		return ResponseEntity.ok().body(listaApartamento);
 	}
+//	@GetMapping
+//	public ResponseEntity<List<ApartamentoView>> findAll() {
+//		
+//		List<ApartamentoView> listaApartamento = apartamentoService.findAll();
+//		return ResponseEntity.ok().body(listaApartamento);
+//	}
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Apartamento> findById(@PathVariable Integer id){
@@ -48,5 +56,15 @@ public class ApartamentoController {
 		
 		return ResponseEntity.created(uri).body(objApartamento);
 	}
+	
+//	@PostMapping
+//	public ResponseEntity<ApartamentoForm> inserirApartamentosDTO(@RequestBody ApartamentoForm objApartamentoForm) {
+//
+//		objApartamentoForm = apartamentoService.inserirApartamentosDTO(objApartamentoForm);
+//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+//				.buildAndExpand(objApartamentoForm.getIdApartamento()).toUri();
+//		
+//		return ResponseEntity.created(uri).body(objApartamentoForm);
+//	}
 
 }
