@@ -26,7 +26,7 @@ public class Despesa implements Serializable{
 	
 	@JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "idProprietario")
+	@JoinColumn(name = "ID_PROPRIETARIO")
 	private Proprietario proprietario;
 	
 	private String nomeDespesa;

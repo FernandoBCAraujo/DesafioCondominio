@@ -23,7 +23,7 @@ public class Apartamento implements Serializable {
 
     @JsonIgnore
 	@ManyToOne
-	@JoinColumn(name = "idProprietario")
+	@JoinColumn(name = "ID_PROPRIETARIO")
 	private Proprietario proprietario;
 
 	private String numeroApartamento;
