@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Proprietario implements Serializable{
 
@@ -28,16 +26,11 @@ public class Proprietario implements Serializable{
 	
 	private String numeroDaIdentidade;
 	
-//	@JsonIgnore
 	@OneToMany(mappedBy = "proprietario")
 	private List<Apartamento> listaApartamentos;
 	
-//	@JsonIgnore
 	@OneToMany(mappedBy = "proprietario")
-//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//	@JoinTable(name="PROPRIETARIO_DESPESA",
-//    joinColumns={@JoinColumn(name = "PROPRIETARIO_ID")},
-//    inverseJoinColumns={@JoinColumn(name = "DESPESA_ID")})
+
 	private List<Despesa> listaDespesas;
 
 	public Integer getIdProprietario() {

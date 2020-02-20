@@ -13,7 +13,7 @@ import org.junit.Test;
 import com.br.itau.models.types.StatusAlugado;
 import com.br.itau.models.types.StatusPagamentoDespesa;
 
-public class ProprietarioTest {
+public class DespesaTest {
 	
 	private String STRING = "STRING";
 	private Integer INTEGER = 1;
@@ -41,7 +41,7 @@ public class ProprietarioTest {
 		apartamento.setStatusAlugado(StatusAlugado.ALUGADO);
 		apartamento.setVagaEstacionamento(STRING);
 		
-		Despesa despesa = new Despesa(INTEGER, proprietario, STRING, new BigDecimal(111), LocalDate.now(), LocalDate.now(), StatusPagamentoDespesa.PAGO, STRING);
+		Despesa despesa = new Despesa(INTEGER, proprietario, STRING, new BigDecimal(1), LocalDate.now(), LocalDate.now(), StatusPagamentoDespesa.PAGO, STRING);
 		despesa.setDataDaDespesa(LocalDate.now());
 		despesa.setDataVencimentoDespesa(LocalDate.now());
 		despesa.setDescricaoDespesa(STRING);
@@ -49,26 +49,24 @@ public class ProprietarioTest {
 		despesa.setNomeDespesa(STRING);
 		despesa.setProprietario(proprietario);
 		despesa.setStatusPagamentoDespesa(StatusPagamentoDespesa.PAGO);
-		despesa.setValorDespesa(new BigDecimal(111));
+		despesa.setValorDespesa(new BigDecimal(1));
 		
-		listaApartamentos.add(apartamento);
-		listaDespesas.add(despesa);
-		
-		assertEquals(STRING, proprietario.getCpf());
-		assertEquals(INTEGER, proprietario.getIdProprietario());
-		assertEquals(listaApartamentos, proprietario.getListaApartamentos());
-		assertEquals(listaDespesas, proprietario.getListaDespesas());
-		assertEquals(STRING, proprietario.getNomeProprietario());
-		assertEquals(STRING, proprietario.getNumeroDaIdentidade());
-		assertEquals(STRING, proprietario.getNumeroTelefone());
+		assertEquals(LocalDate.now(), despesa.getDataDaDespesa());
+		assertEquals(LocalDate.now(), despesa.getDataVencimentoDespesa());
+		assertEquals(STRING, despesa.getDescricaoDespesa());
+		assertEquals(INTEGER, despesa.getIdDespesa());
+		assertEquals(STRING, despesa.getNomeDespesa());
+		assertEquals(proprietario, despesa.getProprietario());
+		assertEquals(StatusPagamentoDespesa.PAGO, despesa.getStatusPagamentoDespesa());
+		assertEquals(new BigDecimal(1), despesa.getValorDespesa());
 		
 	}
 	
 	@Test
 	public void testEquals_Symmetric() {
 		
-		Proprietario x = new Proprietario();
-		Proprietario y = new Proprietario();
+		Despesa x = new Despesa();
+		Despesa y = new Despesa();
 	    assertTrue(x.equals(y) && y.equals(x));
 	    assertTrue(x.hashCode() == y.hashCode());
 

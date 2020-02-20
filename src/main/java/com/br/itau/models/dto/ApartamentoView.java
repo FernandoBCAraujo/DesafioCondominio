@@ -3,7 +3,6 @@ package com.br.itau.models.dto;
 import java.io.Serializable;
 
 import com.br.itau.models.Apartamento;
-import com.br.itau.models.Proprietario;
 import com.br.itau.models.types.StatusAlugado;
 
 public class ApartamentoView implements Serializable{
