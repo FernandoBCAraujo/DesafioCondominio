@@ -22,6 +22,10 @@ public class DespesaService {
 		return despesaRepository.findAll();
 	}
 	
+	public List<Despesa> findAllDespesasByIdProprietario(Integer idProprietario){
+		return despesaRepository.findAllDespesasByIdProprietario(idProprietario);
+	}
+	
 //	public List<DespesaView> findAll(){
 //		List<DespesaView> listaDespesaView = new ArrayList<>();
 //		for(Despesa d : despesaRepository.findAll()) {
