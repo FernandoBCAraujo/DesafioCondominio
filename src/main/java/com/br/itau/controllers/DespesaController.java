@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,6 +40,14 @@ public class DespesaController {
 
 		return ResponseEntity.ok().body(objDespesa);
 	}
+	
+	@GetMapping(value = "/proprietario/{idProprietario}")
+	public ResponseEntity<List<Despesa>> findAllDespesasByIdProprietario(@PathVariable Integer idProprietario) {
+
+	List<Despesa> listaDespesa = despesaService.findAllDespesasByIdProprietario(idProprietario);
+
+		return ResponseEntity.ok().body(listaDespesa);
+	}
 
 	@PostMapping
 	public ResponseEntity<Despesa> insertDespesas(@RequestBody Despesa objDespesa) {
@@ -47,6 +57,20 @@ public class DespesaController {
 				.buildAndExpand(objDespesa.getIdDespesa()).toUri();
 		
 		return ResponseEntity.created(uri).body(objDespesa);
+	}
+	
+	@DeleteMapping(value = "/{idDespesa}")
+	public ResponseEntity<Void> deleteDespesa(@PathVariable Integer idDespesa){
+		despesaService.deleteDespesa(idDespesa);
+		return ResponseEntity.noContent().build();
+	}
+	
+	@PutMapping(value = "/{idDespesa}")
+	public ResponseEntity<Despesa> updateDespesa(@PathVariable Integer idDespesa,
+			@RequestBody Despesa despesa) {
+		despesa = despesaService.updateDespesa(idDespesa, despesa);
+		return ResponseEntity.ok().body(despesa);
+
 	}
 
 }
