@@ -25,7 +25,7 @@ public class ProprietarioService {
 		return objProprietario.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
-	public Proprietario findByName(String nomeProprietario) {
+	public Proprietario findByNomeProprietario(String nomeProprietario) {
 		Optional<Proprietario> objProprietario = proprietarioRepository.findByNomeProprietario(nomeProprietario);
 		return objProprietario.orElseThrow(() -> new ResourceNotFoundException(nomeProprietario));
 	}

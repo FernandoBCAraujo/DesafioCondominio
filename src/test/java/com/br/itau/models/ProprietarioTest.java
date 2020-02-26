@@ -1,7 +1,6 @@
 package com.br.itau.models;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -62,16 +61,6 @@ public class ProprietarioTest {
 		assertEquals(STRING, proprietario.getNumeroDaIdentidade());
 		assertEquals(STRING, proprietario.getNumeroTelefone());
 		
-	}
-	
-	@Test
-	public void testEquals_Symmetric() {
-		
-		Proprietario x = new Proprietario();
-		Proprietario y = new Proprietario();
-	    assertTrue(x.equals(y) && y.equals(x));
-	    assertTrue(x.hashCode() == y.hashCode());
-
 	}
 
 }

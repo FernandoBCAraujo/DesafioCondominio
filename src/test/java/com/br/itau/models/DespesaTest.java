@@ -1,7 +1,6 @@
 package com.br.itau.models;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,6 +17,7 @@ public class DespesaTest {
 	private String STRING = "STRING";
 	private Integer INTEGER = 1;
 	
+	@SuppressWarnings("unused")
 	@Test
 	public void testar_getters_e_setters() {
 		
@@ -42,6 +42,7 @@ public class DespesaTest {
 		apartamento.setVagaEstacionamento(STRING);
 		
 		Despesa despesa = new Despesa(INTEGER, proprietario, STRING, new BigDecimal(1), LocalDate.now(), LocalDate.now(), StatusPagamentoDespesa.PAGO, STRING);
+		Despesa despesaConstrutorVazio = new Despesa();
 		despesa.setDataDaDespesa(LocalDate.now());
 		despesa.setDataVencimentoDespesa(LocalDate.now());
 		despesa.setDescricaoDespesa(STRING);
@@ -62,14 +63,4 @@ public class DespesaTest {
 		
 	}
 	
-	@Test
-	public void testEquals_Symmetric() {
-		
-		Despesa x = new Despesa();
-		Despesa y = new Despesa();
-	    assertTrue(x.equals(y) && y.equals(x));
-	    assertTrue(x.hashCode() == y.hashCode());
-
-	}
-
 }

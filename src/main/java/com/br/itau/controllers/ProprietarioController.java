@@ -42,9 +42,9 @@ public class ProprietarioController {
 	}
 
 	@GetMapping(value = "/nome/{nomeProprietario}")
-	public ResponseEntity<Proprietario> findByName(@PathVariable String nomeProprietario) {
+	public ResponseEntity<Proprietario> findByNomeProprietario(@PathVariable String nomeProprietario) {
 
-		Proprietario objProprietario = proprietarioService.findByName(nomeProprietario);
+		Proprietario objProprietario = proprietarioService.findByNomeProprietario(nomeProprietario);
 
 		return ResponseEntity.ok().body(objProprietario);
 	}
